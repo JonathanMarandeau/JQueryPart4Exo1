@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="../jquery-3.3.1.min.js"></script>
+    <title>Exercice 1 Partie 4</title>
+  </head>
+  <body>
+    <h1>Jeu du Shifumi</h1>
+    <select id="choice">
+      <option value="Pierre">Pierre</option>
+      <option value="Feuille">Feuille</option>
+      <option value="Ciseaux">Ciseaux</option>
+    </select>
+    <button type="button" name="button" id="shifumi">Shifumi !</button>
+    <script>
+      $(function(){
+        var result = 0;//Variable du resultat de la partie
+        var nbGame = 0;//Variable du nombre de parties
+        var nbVictory = 0;//Variable du nombre de victoires
+        var nbDefeat = 0;//Variable du nombre de défaites
+        var percentWin = 0;//Variable du pourcentage de victoires
+        var array = ['Pierre', 'Feuille', 'Ciseaux'];//Je crée une variable tableau avec pierre, feuille, Ciseaux
+         $('#shifumi').click(function(){//Je donne une fonction click au bouton shifumi
+           nbGame ++;//Compte le nombre de partie a chaque clique (++ est égale a +1)
+           var x = (Math.floor(Math.random() *3));//Variable aléatoire pour le choix de l'IA
+           var part = $('#choice').val();//Variable de la partie en cours
+            if (part == array[x]){
+              $('#result').text(array[x] + ' égalité');//Si part = array alors la partie est égalité
+            }else if ((part == ('pierre') && array[x] == ('ciseaux')) || (part == ('feuille') && array[x] == ('pierre')) || (part == ('ciseaux') && array[x] == ('feuille'))){
+              $('result').text(array[x] + 'Vous avez gagné.');
+              $('nbVictory').text('Vous avez gagné' + nbVictory++ + ' fois');
+            }else{
+              $('result').text(array[x] + 'Vous avez perdu')
+              $('nbDefeat').text('Vous avez perdu' + nbDefeat++ + ' fois');
+            }
+            $('percentWin').text('Vous avez ' + (nbVcitory/nbGame)*100 + '%de victoire');
+         });
+      });
+    </script>
+  </body>
+</html>

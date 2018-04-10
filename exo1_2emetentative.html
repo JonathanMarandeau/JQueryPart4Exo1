@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Exercice 1 Partie 4</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <h1>Jeu du Shifumi</h1>
+    <select id="choiceUser">
+      <option value="1" name="Pierre">Pierre</option>
+      <option value="2" name="Feuille">Feuille</option>
+      <option value="3" name="Ciseaux">Ciseaux</option>
+    </select>
+    <button name="Shifumi" id="shifumi">Shifumi !</button>
+    <script>
+    $(function(){//Attendre que le document soit lancé avant de lancer la fonction
+      var nbGame = 0;//Variable nombre de parties
+      var nbWin = 0;//Variable nombre de victoires
+      var nbDefeat = 0;//Varibale nombre de défaites
+      var percentWin = 0;//Variable pourcentage de victoire contre l'IA
+      $('#shifumi').click(function(){//Je donne une fonction click au bouton shifumi
+        var choice = $('#choiceUser').val();//Choix fait par l'utilisateur
+        var hasard = Math.floor(Math.random()*3)+1;//Variable qui concerne le choix de l'IA
+        nbGame++;
+        if(choice == hasard){//Si choix = hasard
+          alert('Egalité');//égalité
+        }else if((choice == 3 && hasard == 1) || (choice == 1 && hasard == 2) || (choice == 2 && hasard == 3)){//Si choix < hasard
+          nbDefeat++;//+1 au nombre de defaite
+          alert('Perdu');//Perdu
+        }else{//Sinon victoire
+          nbWin++;//+1 nombre de victoire
+          alert('Gagné');//Gagné
+        }
+        percentWin = (nbWin/nbGame)*100;//Calcul du pourcentage de victoire
+        alert('Vous avez ' + percentWin + '% de victoire');//Alert pourcentage de victoire
+      });
+    });
+    </script>
+  </body>
+</html>
